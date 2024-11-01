@@ -1,5 +1,7 @@
 package com.example.questions;
 
+import android.content.Intent; // Import this
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_food_question2);
 
         // Initialize Views
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
@@ -27,9 +29,19 @@ public class MainActivity extends AppCompatActivity {
         // Set initial progress
         progressBar.setProgress(progress);
 
-        // Set listener for Radio Buttons
+        // Set listener for Radio Buttons and change color on selection
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            // Reset all radio buttons to their default text color
+            for (int i = 0; i < group.getChildCount(); i++) {
+                RadioButton radioButton = (RadioButton) group.getChildAt(i);
+                radioButton.setTextColor(Color.BLACK); // Default color for all buttons
+            }
+
+            // Change the color of the selected radio button to black
             RadioButton selectedOption = findViewById(checkedId);
+            selectedOption.setTextColor(Color.BLACK);
+
+            // Display a toast message for the selected option
             String message = "Selected: " + selectedOption.getText();
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         });
@@ -46,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
             if (progress < 100) {
                 progress += 10;
                 progressBar.setProgress(progress);
+            } else {
+                // Navigate to the SecondActivity when the progress reaches 100
+                Intent intent = new Intent(MainActivity.this, FoodQuestion2.class);
+                startActivity(intent);
             }
         });
     }
