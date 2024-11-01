@@ -1,0 +1,32 @@
+<!-- res/drawable/transparent_radio_button.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- State when the radio button is checked -->
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- Outer ring with black outline for the selected state -->
+            <item android:left="2dp" android:right="2dp" android:top="2dp" android:bottom="2dp">
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent" /> <!-- Transparent inner -->
+                    <stroke android:width="2dp" android:color="#000000" /> <!-- Black outline -->
+                </shape>
+            </item>
+            <!-- Inner filled circle for the selected state -->
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent" />
+                   <!-- Inner circle color when selected -->
+                    <size android:width="25dp" android:height="25dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- State when the radio button is unchecked -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" /> <!-- Transparent inner -->
+            <stroke android:width="2dp" android:color="#000000" /> <!-- Black outline when unselected -->
+            <size android:width="25dp" android:height="25dp"/>
+        </shape>
+    </item>
+</selector>
